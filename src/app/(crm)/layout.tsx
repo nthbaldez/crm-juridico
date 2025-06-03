@@ -1,15 +1,16 @@
 import type { Metadata } from 'next'
+import Header from '../components/header'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import Container from '../components/ui/container'
+
+export const metadata: Metadata = {
+  title: 'CRM Jurídico',
+}
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
-
-export const metadata: Metadata = {
-  title: 'CRM Jurídico',
-}
 
 export default function RootLayout({
   children,
@@ -19,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen">{children}</div>
+        <Header />
+        <Container>{children}</Container>
       </body>
     </html>
   )
