@@ -1,14 +1,10 @@
 'use client'
 
-import { Badge } from '@/app/components/ui/badge'
-import { Button } from '@/app/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/app/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Eye, Users } from 'lucide-react'
+import Link from 'next/link'
 
 export function ClientsList({
   clients,
@@ -66,14 +62,15 @@ export function ClientsList({
                 <Button
                   variant="outline"
                   size="sm"
+                  asChild
                   onClick={() => {
-                    // setSelectedClient(client)
-                    // setCurrentView('clients')
                     console.log('Ver detalhes do cliente', client)
                   }}
                 >
-                  <Eye className="h-4 w-4 mr-1" />
-                  Ver
+                  <Link href={`/clients/${client.id}`}>
+                    <Eye className="h-4 w-4 mr-1" />
+                    Ver
+                  </Link>
                 </Button>
               </div>
             </div>
