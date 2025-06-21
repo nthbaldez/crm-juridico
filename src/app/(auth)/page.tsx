@@ -1,5 +1,3 @@
-'use client'
-
 export default function AuthPage() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 p-4">
@@ -37,12 +35,6 @@ export default function AuthPage() {
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onClick={(e) => {
-              e.preventDefault()
-              // Handle login logic here
-              console.log('Login button clicked')
-              // Add your login logic here
-            }}
           >
             Login
           </button>

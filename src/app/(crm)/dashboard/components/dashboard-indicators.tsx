@@ -1,13 +1,14 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ClientProps } from '@/services/clients'
 import { Users } from 'lucide-react'
 
-export function DashboardIndicators({
-  clients,
-}: {
-  clients: { id: number; name: string; status: string; email: string }[]
-}) {
+export interface DashboardIndicatorsProps {
+  clients: ClientProps[]
+}
+
+export function DashboardIndicators({ clients }: DashboardIndicatorsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 w-full">
       <Card className="bg-white shadow-sm hover:shadow-md cursor-pointer transition-shadow border border-gray-200">

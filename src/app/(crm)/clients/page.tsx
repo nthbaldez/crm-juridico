@@ -1,22 +1,16 @@
-import Heading from '@/components/heading'
-import { Card, CardHeader } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
+import { getClients } from '@/services/clients'
+import Link from 'next/link'
 
-export default function ClientsPage() {
+export default async function ClientsPage() {
+  const clients = await getClients()
   return (
-    <div className="space-y-6">
-      <div className="w-full space-y-2">
-        <Heading>Clientes</Heading>
-        <h2 className="text-gray-600">
-          Visão geral dos seus clientes e processos
-        </h2>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 space-x-8">
-        <Card>
-          <CardHeader>Lista de clientes(4)</CardHeader>
-        </Card>
-        <Card></Card>
-      </div>
+    <div className="p-4 grid gap-6 overflow-y-auto">
+      {clients.map(({ id, name }) => (
+        <Link key={id} href={`/clients/${id}`}>
+          <Card className="h-54 p-4">{name}</Card>
+        </Link>
+      ))}
     </div>
   )
 }

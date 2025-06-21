@@ -4,7 +4,10 @@ import { twMerge } from 'tailwind-merge'
 export function Skeleton({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={twMerge('bg-zinc-50/10 animate-pulse rounded-md', className)}
+      className={twMerge(
+        'bg-gray-200 animate-pulse rounded-md w-full h-full',
+        className,
+      )}
       {...props}
     />
   )

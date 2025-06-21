@@ -3,14 +3,15 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ClientProps } from '@/services/clients'
 import { Eye, Users } from 'lucide-react'
 import Link from 'next/link'
 
-export function ClientsList({
-  clients,
-}: {
-  clients: { id: number; name: string; status: string; email: string }[]
-}) {
+export interface ClientsListProps {
+  clients: ClientProps[]
+}
+
+export function ClientsList({ clients }: ClientsListProps) {
   function getStatusColor(status: string) {
     switch (status) {
       case 'Ativo':
