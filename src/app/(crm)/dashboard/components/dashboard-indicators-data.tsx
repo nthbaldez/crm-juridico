@@ -1,4 +1,4 @@
-import { getClients } from '@/services/clients'
+import { getClients } from '@/core/infrastructure/services/clients'
 import { DashboardIndicators } from './dashboard-indicators'
 
 export async function DashboardIndicatorsData() {

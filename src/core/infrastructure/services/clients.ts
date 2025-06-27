@@ -1,4 +1,6 @@
-import { api } from './api'
+// import { api } from '../http/api'
+
+import { api } from '../http/api'
 
 export type ClientProps = {
   id: number

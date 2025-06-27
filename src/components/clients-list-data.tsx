@@ -1,4 +1,4 @@
-import { getClients } from '@/services/clients'
+import { getClients } from '@/core/infrastructure/services/clients'
 import { ClientsList } from './clients-list'
 
 export async function ClientsListData() {

@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/skeleton'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
-export default function Loading() {
+export default function LoadingListSkeleton() {
   return (
     <div className="w-full space-y-4">
       <div className="w-full space-y-2">

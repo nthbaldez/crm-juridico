@@ -3,36 +3,19 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ClientProps } from '@/services/clients'
+import { ClientProps } from '@/core/infrastructure/services/clients'
+import { getStatusColor } from '@/lib/utils'
 import { Eye, Users } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export interface ClientsListProps {
   clients: ClientProps[]
 }
 
 export function ClientsList({ clients }: ClientsListProps) {
-  function getStatusColor(status: string) {
-    switch (status) {
-      case 'Ativo':
-      case 'Em andamento':
-        return 'bg-green-100 text-green-800'
-      case 'Finalizado':
-        return 'bg-blue-100 text-blue-800'
-      case 'Inativo':
-        return 'bg-red-100 text-red-800'
-      case 'Suspenso':
-        return 'bg-yellow-100 text-yellow-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
+  const router = useRouter()
 
-  // function formatCurrency(value: number) {
-  //   return new Intl.NumberFormat('pt-BR', {
-  //     style: 'currency',
-  //     currency: 'BRL',
-  //   }
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardHeader>
@@ -64,9 +47,7 @@ export function ClientsList({ clients }: ClientsListProps) {
                   variant="outline"
                   size="sm"
                   asChild
-                  onClick={() => {
-                    console.log('Ver detalhes do cliente', client)
-                  }}
+                  onClick={() => router.push(`/clients/${client.id}`)}
                 >
                   <Link href={`/clients/${client.id}`}>
                     <Eye className="h-4 w-4 mr-1" />

@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ClientProps } from '@/services/clients'
+import { ClientProps } from '@/core/infrastructure/services/clients'
 import { Users } from 'lucide-react'
 
 export interface DashboardIndicatorsProps {

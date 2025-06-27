@@ -1,9 +1,10 @@
 import Heading from '@/components/heading'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
-import Loading from './loading'
-import { ClientsListData } from './components/clients-list-data'
 import { DashboardIndicatorsData } from './components/dashboard-indicators-data'
+import LoadingListSkeleton from './loading-list-skeleton'
+import LoadingDashboardSkeleton from './loading-dashboard'
+import { ClientsListData } from '@/components/clients-list-data'
 
 export const metadata: Metadata = {
   title: 'Dashboard Home',
@@ -19,10 +20,10 @@ export default function DashboardPage() {
           Visão geral dos seus clientes e processos
         </h2>
       </div>
-      <Suspense key="indicators" fallback={<h1>Carregando...</h1>}>
+      <Suspense key="indicators" fallback={<LoadingDashboardSkeleton />}>
         <DashboardIndicatorsData />
       </Suspense>
-      <Suspense key="clients-list" fallback={<Loading />}>
+      <Suspense key="clients-list" fallback={<LoadingListSkeleton />}>
         <ClientsListData />
       </Suspense>
     </div>
