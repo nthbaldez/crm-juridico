@@ -1,7 +1,18 @@
 import Heading from '@/components/heading'
 import { List } from './components/list'
+// import z from 'zod'
 
-export default async function ClientsPage() {
+export default async function ClientsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const filters = (await searchParams).filters
+  console.log(filters)
+  // const pageIndex = z.coerce
+  //   .number()
+  //   .transform((page) => page - 1)
+  //   .parse()
   return (
     <div className="space-y-6">
       <div className="w-full space-y-2">
