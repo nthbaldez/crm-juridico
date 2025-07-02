@@ -3,7 +3,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GetClientsResponse } from '@/http/clients'
+import { GetClientsResponse } from '@/http/customers'
 import { getStatusColor } from '@/lib/utils'
 import { Eye, Users } from 'lucide-react'
 import Link from 'next/link'
@@ -20,7 +20,7 @@ export function ClientsList({
   title = 'Clientes recentes',
 }: ClientsListProps) {
   const router = useRouter()
-
+  const { clients } = data
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardHeader>
@@ -30,7 +30,7 @@ export function ClientsList({
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {data.clients.map((client) => (
+          {clients.map((client) => (
             <div
               key={client.id}
               className="flex items-center justify-between p-4 border border-gray-200 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"

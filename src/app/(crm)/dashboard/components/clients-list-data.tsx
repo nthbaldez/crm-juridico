@@ -1,7 +1,7 @@
-import { getClients } from '@/http/clients'
+import { getClients } from '@/http/customers'
 import { ClientsList } from './clients-list'
 
 export async function ClientsListData() {
-  const clients = await getClients({ page: '0', perPage: '3' })
+  const clients = await getClients({ perPage: '3' })
   return <ClientsList data={clients} />
 }

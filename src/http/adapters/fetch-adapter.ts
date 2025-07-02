@@ -20,7 +20,7 @@ export async function fetchAdapter<T = any>(
     ).toString()
     finalUrl += (url.includes('?') ? '&' : '?') + query
   }
-  console.log(finalUrl)
+
   // Prepare fetch options
   const fetchOptions: RequestInit = {
     method: options.method || 'GET',

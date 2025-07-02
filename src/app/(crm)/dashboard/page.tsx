@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { DashboardIndicatorsData } from './components/dashboard-indicators-data'
 import LoadingListSkeleton from './loading-list-skeleton'
 import LoadingDashboardSkeleton from './loading-dashboard'
-import { ClientsListData } from '@/components/clients-list-data'
+import { ClientsListData } from '@/app/(crm)/dashboard/components/clients-list-data'
 
 export const metadata: Metadata = {
   title: 'CRM - Dashboard Home',

@@ -2,9 +2,9 @@
 // import { fetchAdapter } from './adapters/fetch-adapter'
 
 import { sleep } from '@/lib/utils'
-import { Client } from '@/types'
+import { Customer } from '@/types'
 
-const clients = [
+const customers = [
   {
     id: '1',
     name: 'Maria Silva Santos',
@@ -241,14 +241,19 @@ const clients = [
   },
 ]
 
-export interface GetClientsResponse {
-  clients: Client[]
+export interface GetCustomersResponse {
+  customers: Customer[]
   meta: {
     totalCount: number
+    page: number
+    perPage: number
+    totalPages: number
   }
 }
 
-export async function getClients(params?: Record<string, string>) {
+export async function getCustomers(
+  params?: Record<string, string>,
+): Promise<GetCustomersResponse> {
   // const res = await fetchAdapter(
   //   `${env.NEXT_PUBLIC_API_BASE_URL}/api/clients`,
   //   {
@@ -258,25 +263,20 @@ export async function getClients(params?: Record<string, string>) {
   // )
   await sleep(2000)
 
-  if (params) {
-    const page = parseInt(params.page) || 1 // Default to page 1 if not provided
-    const pageSize = parseInt(params.perPage) || 10
+  const page = params?.page ? parseInt(params.page) : 1
+  const pageSize = params?.perPage ? parseInt(params.perPage) : 10
 
-    const start = (page - 1) * pageSize
-    const end = start + pageSize
-
-    return {
-      clients: clients.slice(start, end),
-      meta: {
-        totalCount: clients.length,
-      },
-    }
-  }
+  const start = (page - 1) * pageSize
+  const end = start + pageSize
+  const customersList = customers.slice(start, end)
 
   return {
-    clients,
+    customers: customersList,
     meta: {
-      totalCount: clients.length,
+      totalCount: customers.length,
+      page,
+      perPage: pageSize,
+      totalPages: Math.ceil(customers.length / pageSize),
     },
   }
 }

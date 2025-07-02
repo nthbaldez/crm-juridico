@@ -7,7 +7,7 @@ export interface Process {
   last_update: string
 }
 
-export interface Client {
+export interface Customer {
   id: string
   name: string
   status: string
