@@ -1,18 +1,19 @@
 import Heading from '@/components/heading'
-import { List } from './components/list'
+import { Suspense } from 'react'
+import LoadingListSkeleton from '../dashboard/loading-list-skeleton'
+import { Metadata } from 'next'
+import { ClientsListData } from './components/clients-list-data'
 // import z from 'zod'
 
-export default async function ClientsPage({
+export const metadata: Metadata = {
+  title: 'CRM - Listagem de Clientes',
+}
+
+export default function ClientsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  searchParams: Promise<{ page: string }>
 }) {
-  const filters = (await searchParams).filters
-  console.log(filters)
-  // const pageIndex = z.coerce
-  //   .number()
-  //   .transform((page) => page - 1)
-  //   .parse()
   return (
     <div className="space-y-6">
       <div className="w-full space-y-2">
@@ -21,7 +22,9 @@ export default async function ClientsPage({
       </div>
       <div className="grid grid-cols-1 m-auto space-y-6">
         <div className="grid gap-6 overflow-y-auto">
-          <List />
+          <Suspense key="clients-list" fallback={<LoadingListSkeleton />}>
+            <ClientsListData searchParams={searchParams} />
+          </Suspense>
         </div>
       </div>
     </div>

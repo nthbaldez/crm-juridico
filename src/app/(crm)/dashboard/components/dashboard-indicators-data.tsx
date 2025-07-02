@@ -1,9 +1,7 @@
-import { HttpClientService } from '@/core/infrastructure/services/clients'
 import { DashboardIndicators } from './dashboard-indicators'
+import { getClients } from '@/http/clients'
 
 export async function DashboardIndicatorsData() {
-  const clientsService = new HttpClientService()
-  const clients = await clientsService.getAll()
-
-  return <DashboardIndicators clients={clients} />
+  const clients = await getClients()
+  return <DashboardIndicators data={clients} />
 }

@@ -1,14 +1,15 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Client } from '@/core/domain/entities/client'
+import { GetClientsResponse } from '@/http/clients'
 import { FileText, Users } from 'lucide-react'
 
 export interface DashboardIndicatorsProps {
-  clients: Client[]
+  data: GetClientsResponse
 }
 
-export function DashboardIndicators({ clients }: DashboardIndicatorsProps) {
+export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
+  const { clients } = data
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 w-full">
       <Card className="bg-white shadow-sm hover:shadow-md cursor-pointer transition-shadow border border-gray-200">

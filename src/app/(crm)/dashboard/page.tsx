@@ -7,7 +7,7 @@ import LoadingDashboardSkeleton from './loading-dashboard'
 import { ClientsListData } from '@/components/clients-list-data'
 
 export const metadata: Metadata = {
-  title: 'Dashboard Home',
+  title: 'CRM - Dashboard Home',
 }
 
 export default function DashboardPage() {

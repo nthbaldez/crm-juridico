@@ -1,9 +1,7 @@
-import { HttpClientService } from '@/core/infrastructure/services/clients'
+import { getClients } from '@/http/clients'
 import { ClientsList } from './clients-list'
 
 export async function ClientsListData() {
-  const clientsService = new HttpClientService()
-  const clients = await clientsService.getAll()
-
-  return <ClientsList clients={clients} />
+  const clients = await getClients({ page: '0', perPage: '3' })
+  return <ClientsList data={clients} />
 }
