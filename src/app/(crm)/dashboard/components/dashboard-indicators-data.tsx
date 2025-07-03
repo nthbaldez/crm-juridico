@@ -1,7 +1,7 @@
 import { DashboardIndicators } from './dashboard-indicators'
-import { getClients } from '@/http/customers'
+import { getCustomers } from '@/http/customers'
 
 export async function DashboardIndicatorsData() {
-  const clients = await getClients()
+  const clients = await getCustomers()
   return <DashboardIndicators data={clients} />
 }

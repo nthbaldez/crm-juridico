@@ -29,7 +29,6 @@ export function CustomersList({ data, pageIndex = 1 }: CustomersListProps) {
 
   const { customers } = data
 
-  // const clientName =
   function handlePaginate(pageIndex: number) {
     const params = new URLSearchParams(searchParams)
     params.set('page', (pageIndex + 1).toString())

@@ -3,6 +3,8 @@ import { Suspense } from 'react'
 import { Metadata } from 'next'
 import CustomersListSkeleton from './components/customers-list-skeleton'
 import { CustomersListData } from './components/customers-list-data'
+import { CustomersListFilters } from './components/customers-list-filters'
+import { CreateNewCustomerForm } from '@/components/create-new-customer-form'
 // import z from 'zod'
 
 export const metadata: Metadata = {
@@ -12,20 +14,27 @@ export const metadata: Metadata = {
 export default function CustomersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string; customerName: string }>
 }) {
   return (
     <div className="space-y-6">
-      <div className="w-full space-y-2">
-        <Heading>Clientes</Heading>
-        <h2 className="text-gray-600">Lista geral dos seus clientes</h2>
-      </div>
-      <div className="grid grid-cols-1 m-auto space-y-6">
-        <div className="grid gap-6 overflow-y-auto">
-          <Suspense key="clients-list" fallback={<CustomersListSkeleton />}>
-            <CustomersListData searchParams={searchParams} />
-          </Suspense>
+      <div className="w-full flex items-center justify-between">
+        <div className="space-y-2">
+          <Heading>Clientes</Heading>
+          <h2 className="text-gray-600">Lista geral dos seus clientes</h2>
         </div>
+        <div className="flex items-center">
+          {/* <CustomersListFilters /> */}
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <CustomersListFilters />
+            <CreateNewCustomerForm />
+          </div>
+        </div>
+      </div>
+      <div className="overflow-y-auto">
+        <Suspense key="clients-list" fallback={<CustomersListSkeleton />}>
+          <CustomersListData searchParams={searchParams} />
+        </Suspense>
       </div>
     </div>
   )

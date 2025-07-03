@@ -1,16 +1,13 @@
-'use client'
-
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GetClientsResponse } from '@/http/customers'
+import { GetCustomersResponse } from '@/http/customers'
 import { getStatusColor } from '@/lib/utils'
 import { Eye, Users } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 export interface ClientsListProps {
-  data: GetClientsResponse
+  data: GetCustomersResponse
   limit?: number
   title?: string
 }
@@ -19,8 +16,7 @@ export function ClientsList({
   data,
   title = 'Clientes recentes',
 }: ClientsListProps) {
-  const router = useRouter()
-  const { clients } = data
+  const { customers } = data
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardHeader>
@@ -30,7 +26,7 @@ export function ClientsList({
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {clients.map((client) => (
+          {customers.map((client) => (
             <div
               key={client.id}
               className="flex items-center justify-between p-4 border border-gray-200 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"
@@ -52,9 +48,9 @@ export function ClientsList({
                   variant="outline"
                   size="sm"
                   asChild
-                  onClick={() => router.push(`/clients/${client.id}`)}
+                  // onClick={() => router.push(`/customers/${client.id}`)}
                 >
-                  <Link href={`/clients/${client.id}`}>
+                  <Link href={`/customers/${client.id}`}>
                     <Eye className="h-4 w-4 mr-1" />
                     Ver
                   </Link>

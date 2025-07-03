@@ -5,10 +5,14 @@ import { CustomersList } from './customers-list'
 export async function CustomersListData({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string; customerName: string }>
 }) {
   const params = await searchParams
   const page = params.page
+  const customerName = params.customerName
+
+  console.log(`Customer: ${customerName}`)
+
   const pageIndex = z.coerce
     .number()
     .transform((page) => page - 1)

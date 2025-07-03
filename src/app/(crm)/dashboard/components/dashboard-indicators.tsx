@@ -1,15 +1,15 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GetClientsResponse } from '@/http/customers'
+import { GetCustomersResponse } from '@/http/customers'
 import { FileText, Users } from 'lucide-react'
 
 export interface DashboardIndicatorsProps {
-  data: GetClientsResponse
+  data: GetCustomersResponse
 }
 
 export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
-  const { clients } = data
+  const { customers } = data
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 w-full">
       <Card className="bg-white shadow-sm hover:shadow-md cursor-pointer transition-shadow border border-gray-200">
@@ -21,10 +21,10 @@ export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-gray-900">
-            {clients.length}
+            {customers.length}
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            {clients.filter((c) => c.status === 'Ativo').length} ativos
+            {customers.filter((c) => c.status === 'Ativo').length} ativos
           </p>
         </CardContent>
       </Card>
@@ -37,10 +37,10 @@ export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-gray-900">
-            {clients.length}
+            {customers.length}
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            {clients.filter((c) => c.status === 'Ativo').length} em andamento
+            {customers.filter((c) => c.status === 'Ativo').length} em andamento
           </p>
         </CardContent>
       </Card>
@@ -53,10 +53,10 @@ export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-gray-900">
-            {clients.length}
+            {customers.length}
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            {clients.filter((c) => c.status === 'Ativo').length} ativos
+            {customers.filter((c) => c.status === 'Ativo').length} ativos
           </p>
         </CardContent>
       </Card>
@@ -69,10 +69,10 @@ export function DashboardIndicators({ data }: DashboardIndicatorsProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-gray-900">
-            {clients.length}
+            {customers.length}
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            {clients.filter((c) => c.status === 'Ativo').length} ativos
+            {customers.filter((c) => c.status === 'Ativo').length} ativos
           </p>
         </CardContent>
       </Card>
