@@ -25,7 +25,6 @@ export default function CustomersPage({
           <h2 className="text-gray-600">Lista geral dos seus clientes</h2>
         </div>
         <div className="flex items-center">
-          {/* <CustomersListFilters /> */}
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <CustomersListFilters />
             <CreateNewCustomerForm action={createCustomer} />

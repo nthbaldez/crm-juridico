@@ -13,15 +13,19 @@ import { useState } from 'react'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { toast } from 'sonner'
+import { CreateNewCustomerResponse } from '@/http/entities/customers-entities'
 
 export interface CreateNewCustomerFormProps {
   action: (
     formData: FormData,
-  ) => Promise<{ error?: Record<string, string[]> } | { data: any }>
+  ) => Promise<
+    { error?: Record<string, string[]> } | { data: CreateNewCustomerResponse }
+  >
 }
 
 export function CreateNewCustomerForm({ action }: CreateNewCustomerFormProps) {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({})
+  const [pending, setPending] = useState(false)
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -30,33 +34,50 @@ export function CreateNewCustomerForm({ action }: CreateNewCustomerFormProps) {
     cpf: '',
   })
 
+  function clearForm() {
+    setFormData({ name: '', email: '', phone: '', cpf: '' })
+    setFieldErrors({})
+    setPending(false)
+  }
+
   function handleInputChange(field: string, value: string) {
     setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  function handleOpen() {
+    setOpen((prev) => !prev)
+    clearForm()
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     const fd = new FormData()
+
     Object.entries(formData).forEach(([key, value]) => {
       fd.append(key, value)
     })
+
+    setPending(true)
 
     const result = await action(fd)
 
     if (result && 'error' in result) {
       setFieldErrors(result.error ?? {})
+      setPending(false)
       return
     }
+
     setOpen(false)
-    setFormData({ name: '', email: '', phone: '', cpf: '' })
+    clearForm()
+
     toast('Cadastro de cliente feito com sucesso!', {
       description: 'Acesse a lista de clientes para visualizar detalhes',
     })
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpen}>
       <DialogTrigger asChild>
         <Button className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
@@ -133,7 +154,9 @@ export function CreateNewCustomerForm({ action }: CreateNewCustomerFormProps) {
             >
               Cancelar
             </Button>
-            <Button type="submit">Adicionar Cliente</Button>
+            <Button type="submit" disabled={pending}>
+              Adicionar Cliente
+            </Button>
           </div>
         </form>
       </DialogContent>

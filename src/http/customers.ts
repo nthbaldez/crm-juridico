@@ -2,7 +2,7 @@
 // import { fetchAdapter } from './adapters/fetch-adapter'
 
 import { sleep } from '@/lib/utils'
-import { Customer } from '@/types'
+import { GetCustomersResponse } from './entities/entities'
 
 const customers = [
   {
@@ -240,16 +240,6 @@ const customers = [
     ],
   },
 ]
-
-export interface GetCustomersResponse {
-  customers: Customer[]
-  meta: {
-    totalCount: number
-    page: number
-    perPage: number
-    totalPages: number
-  }
-}
 
 export async function getCustomers(
   params?: Record<string, string>,

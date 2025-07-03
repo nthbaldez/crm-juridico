@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GetCustomersResponse } from '@/http/customers'
+import { GetCustomersResponse } from '@/http/entities/entities'
 import { FileText, Users } from 'lucide-react'
 
 export interface DashboardIndicatorsProps {

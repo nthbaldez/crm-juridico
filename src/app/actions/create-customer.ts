@@ -1,31 +1,30 @@
 'use server'
 
-import z from 'zod'
-
-const customerSchema = z.object({
-  name: z.string().min(1, 'Nome é obrigatório'),
-  email: z.string().email('E-mail inválido'),
-  phone: z.string().min(1, 'Telefone é obrigatório'),
-  cpf: z.string().min(1, 'CPF é obrigatório'),
-})
+import { CreateNewCustomerResponse } from '@/http/entities/entities'
+import { sleep } from '@/lib/utils'
+import { customerSchema } from '@/lib/zod'
 
 export async function createCustomer(
   formData: FormData,
-): Promise<{ error?: Record<string, string[]> } | { data: any }> {
+): Promise<
+  { error?: Record<string, string[]> } | { data: CreateNewCustomerResponse }
+> {
+  await sleep(2000)
+
   const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    cpf: formData.get('cpf'),
+    name: String(formData.get('name') ?? ''),
+    email: String(formData.get('email') ?? ''),
+    phone: String(formData.get('phone') ?? ''),
+    cpf: String(formData.get('cpf') ?? ''),
   }
 
   const result = customerSchema.safeParse(data)
 
   if (!result.success) {
     const fieldErrors = result.error.flatten().fieldErrors
-    console.log(fieldErrors)
     return { error: fieldErrors }
   }
 
+  // TODO: Chamada para persistir cliente no banco, chamando o service
   return { data }
 }
