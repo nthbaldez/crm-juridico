@@ -92,12 +92,14 @@ export function CustomersList({ data, pageIndex = 1 }: CustomersListProps) {
           </Card>
         ))}
       </div>
-      <Pagination
-        pageIndex={pageIndex}
-        perPage={PAGE_SIZE}
-        totalCount={data.meta.totalCount}
-        onPageChange={handlePaginate}
-      />
+      {customers && (
+        <Pagination
+          pageIndex={pageIndex}
+          perPage={PAGE_SIZE}
+          totalCount={data.meta.totalCount}
+          onPageChange={handlePaginate}
+        />
+      )}
     </div>
   )
 }

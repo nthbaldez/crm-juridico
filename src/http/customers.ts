@@ -254,18 +254,27 @@ export interface GetCustomersResponse {
 export async function getCustomers(
   params?: Record<string, string>,
 ): Promise<GetCustomersResponse> {
-  // const res = await fetchAdapter(
-  //   `${env.NEXT_PUBLIC_API_BASE_URL}/api/clients`,
-  //   {
-  //     method: 'GET',
-  //     params,
-  //   },
-  // )
   await sleep(2000)
 
   const page = params?.page ? parseInt(params.page) : 1
-  const pageSize = params?.perPage ? parseInt(params.perPage) : 10
+  const pageSize = params?.perPage ? parseInt(params.perPage) : 6
+  const customerName = params?.customerName || null
 
+  if (customerName) {
+    const customersFiltered = customers.filter((customer) =>
+      customer.name.toLowerCase().includes(customerName.toLowerCase()),
+    )
+
+    return {
+      customers: customersFiltered,
+      meta: {
+        totalCount: customersFiltered.length,
+        page,
+        perPage: pageSize,
+        totalPages: Math.ceil(customersFiltered.length / pageSize),
+      },
+    }
+  }
   const start = (page - 1) * pageSize
   const end = start + pageSize
   const customersList = customers.slice(start, end)

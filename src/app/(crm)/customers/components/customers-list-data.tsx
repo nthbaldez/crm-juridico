@@ -9,15 +9,13 @@ export async function CustomersListData({
 }) {
   const params = await searchParams
   const page = params.page
-  const customerName = params.customerName
-
-  console.log(`Customer: ${customerName}`)
 
   const pageIndex = z.coerce
     .number()
     .transform((page) => page - 1)
     .parse(page ?? '1')
 
-  const customers = await getCustomers({ page, perPage: '6' })
+  const customers = await getCustomers(params)
+  console.log(customers)
   return <CustomersList data={customers} pageIndex={pageIndex} />
 }
