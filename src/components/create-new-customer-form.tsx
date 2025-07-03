@@ -12,10 +12,16 @@ import {
 import { useState } from 'react'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
+import { toast } from 'sonner'
 
-export interface CreateNewCustomerFormProps {}
+export interface CreateNewCustomerFormProps {
+  action: (
+    formData: FormData,
+  ) => Promise<{ error?: Record<string, string[]> } | { data: any }>
+}
 
-export function CreateNewCustomerForm(props: CreateNewCustomerFormProps) {
+export function CreateNewCustomerForm({ action }: CreateNewCustomerFormProps) {
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({})
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -24,14 +30,29 @@ export function CreateNewCustomerForm(props: CreateNewCustomerFormProps) {
     cpf: '',
   })
 
-  function handleSubmit() {
-    console.log('chegou no submit')
+  function handleInputChange(field: string, value: string) {
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  function handleInputChange(field: string, value: string) {
-    console.log(
-      `lidando com input changes do campo ${field} com o valor ${value}`,
-    )
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    const fd = new FormData()
+    Object.entries(formData).forEach(([key, value]) => {
+      fd.append(key, value)
+    })
+
+    const result = await action(fd)
+
+    if (result && 'error' in result) {
+      setFieldErrors(result.error ?? {})
+      return
+    }
+    setOpen(false)
+    setFormData({ name: '', email: '', phone: '', cpf: '' })
+    toast('Cadastro de cliente feito com sucesso!', {
+      description: 'Acesse a lista de clientes para visualizar detalhes',
+    })
   }
 
   return (
@@ -46,15 +67,19 @@ export function CreateNewCustomerForm(props: CreateNewCustomerFormProps) {
         <DialogHeader>
           <DialogTitle>Adicionar Novo Cliente</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Label htmlFor="name">Nome Completo</Label>
             <Input
               id="name"
+              name="name"
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               placeholder="Ex: João Silva Santos"
             />
+            {fieldErrors.name && (
+              <span className="text-red-500 text-xs">{fieldErrors.name}</span>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -62,30 +87,42 @@ export function CreateNewCustomerForm(props: CreateNewCustomerFormProps) {
             <Input
               id="email"
               type="email"
+              name="email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
               placeholder="Ex: joao@email.com"
             />
+            {fieldErrors.email && (
+              <span className="text-red-500 text-xs">{fieldErrors.email}</span>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="phone">Telefone</Label>
             <Input
               id="phone"
+              name="phone"
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
               placeholder="Ex: (11) 99999-9999"
             />
+            {fieldErrors.phone && (
+              <span className="text-red-500 text-xs">{fieldErrors.phone}</span>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="cpf">CPF</Label>
             <Input
               id="cpf"
+              name="cpf"
               value={formData.cpf}
               onChange={(e) => handleInputChange('cpf', e.target.value)}
               placeholder="Ex: 123.456.789-00"
             />
+            {fieldErrors.cpf && (
+              <span className="text-red-500 text-xs">{fieldErrors.cpf}</span>
+            )}
           </div>
 
           <div className="flex justify-end space-x-2 pt-4">

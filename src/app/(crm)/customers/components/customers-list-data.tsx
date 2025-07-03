@@ -16,6 +16,5 @@ export async function CustomersListData({
     .parse(page ?? '1')
 
   const customers = await getCustomers(params)
-  console.log(customers)
   return <CustomersList data={customers} pageIndex={pageIndex} />
 }

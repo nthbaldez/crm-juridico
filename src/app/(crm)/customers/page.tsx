@@ -5,6 +5,7 @@ import CustomersListSkeleton from './components/customers-list-skeleton'
 import { CustomersListData } from './components/customers-list-data'
 import { CustomersListFilters } from './components/customers-list-filters'
 import { CreateNewCustomerForm } from '@/components/create-new-customer-form'
+import { createCustomer } from '@/app/actions/create-customer'
 // import z from 'zod'
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function CustomersPage({
           {/* <CustomersListFilters /> */}
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <CustomersListFilters />
-            <CreateNewCustomerForm />
+            <CreateNewCustomerForm action={createCustomer} />
           </div>
         </div>
       </div>
