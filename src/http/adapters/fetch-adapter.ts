@@ -21,7 +21,7 @@ export async function fetchAdapter<T = any>(
     finalUrl += (url.includes('?') ? '&' : '?') + query
   }
 
-  // Prepare fetch options
+  // Fetch options
   const fetchOptions: RequestInit = {
     method: options.method || 'GET',
     headers: {

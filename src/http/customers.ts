@@ -3,6 +3,7 @@
 
 import { sleep } from '@/lib/utils'
 import { GetCustomersResponse } from './entities/entities'
+import { Customer, GetCustomersParams } from '@/types'
 
 const customers = [
   {
@@ -241,41 +242,38 @@ const customers = [
   },
 ]
 
+function filterCustomers(customers: Customer[], name?: string) {
+  if (!name) return customers
+  return customers.filter((customer) =>
+    customer.name.toLowerCase().includes(name.toLowerCase()),
+  )
+}
+
+function paginate<T>(items: T[], page: number, perPage: number) {
+  const start = (page - 1) * perPage
+  const end = start + perPage
+  return items.slice(start, end)
+}
+
 export async function getCustomers(
-  params?: Record<string, string>,
+  params?: GetCustomersParams,
 ): Promise<GetCustomersResponse> {
   await sleep(2000)
 
   const page = params?.page ? parseInt(params.page) : 1
-  const pageSize = params?.perPage ? parseInt(params.perPage) : 6
-  const customerName = params?.customerName || null
+  const perPage = params?.perPage ? parseInt(params.perPage) : 6
+  const customerName = params?.customerName
 
-  if (customerName) {
-    const customersFiltered = customers.filter((customer) =>
-      customer.name.toLowerCase().includes(customerName.toLowerCase()),
-    )
-
-    return {
-      customers: customersFiltered,
-      meta: {
-        totalCount: customersFiltered.length,
-        page,
-        perPage: pageSize,
-        totalPages: Math.ceil(customersFiltered.length / pageSize),
-      },
-    }
-  }
-  const start = (page - 1) * pageSize
-  const end = start + pageSize
-  const customersList = customers.slice(start, end)
+  const filtered = filterCustomers(customers, customerName)
+  const paginated = paginate(filtered, page, perPage)
 
   return {
-    customers: customersList,
+    customers: paginated,
     meta: {
-      totalCount: customers.length,
+      totalCount: filtered.length,
       page,
-      perPage: pageSize,
-      totalPages: Math.ceil(customers.length / pageSize),
+      perPage,
+      totalPages: Math.ceil(filtered.length / perPage),
     },
   }
 }

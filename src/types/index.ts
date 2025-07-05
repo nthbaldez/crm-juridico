@@ -17,3 +17,9 @@ export interface Customer {
   created_at: string
   processes: Process[]
 }
+
+export interface GetCustomersParams {
+  page?: string
+  perPage?: string
+  customerName?: string
+}
