@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { GetCustomersResponse } from '@/http/customers'
+import { GetCustomersResponse } from '@/http/entities/entities'
 import { getStatusColor } from '@/lib/utils'
 import { Eye, FileText } from 'lucide-react'
 import Link from 'next/link'

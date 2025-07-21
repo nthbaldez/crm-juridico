@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { toast } from 'sonner'
-import { CreateNewCustomerResponse } from '@/http/entities/customers-entities'
+import { CreateNewCustomerResponse } from '@/http/entities/entities'
 
 export interface CreateNewCustomerFormProps {
   action: (
