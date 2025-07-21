@@ -7,10 +7,11 @@ import { usePathname } from 'next/navigation'
 export default function Header() {
   const pathName = usePathname()
 
-  const isActive = (path: string) =>
-    pathName === path
+  function isActive(path: string) {
+    return pathName === path
       ? 'bg-black py-2 px-4 text-white rounded-lg'
       : 'py-2 px-4 text-gray-900 hover:bg-gray-200 rounded-lg transition-colors duration-200'
+  }
 
   return (
     <header className="bg-white shadow-sm border-b-border">
@@ -28,7 +29,7 @@ export default function Header() {
           <Link href="/dashboard" className={`${isActive('/dashboard')}`}>
             Dashboard
           </Link>
-          <Link href="/clients" className={`${isActive('/clients')}`}>
+          <Link href="/customers" className={`${isActive('/customers')}`}>
             Clientes
           </Link>
         </nav>

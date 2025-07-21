@@ -1,33 +1,16 @@
-import { DashboardIndicators } from './components/dashboard-indicators'
-import { ClientsList } from './components/clients-list'
 import Heading from '@/components/heading'
-import { api } from '@/services/api'
 import { Metadata } from 'next'
-import { Suspense, use } from 'react'
-import Loading from './loading'
-
-async function getClients() {
-  await new Promise((resolve) => setTimeout(resolve, 3000))
-  const response = await api('/clients', {
-    next: {
-      revalidate: 60 * 60,
-    },
-  })
-
-  const clients = await response.json()
-
-  return clients
-}
+import { Suspense } from 'react'
+import { DashboardIndicatorsData } from './components/dashboard-indicators-data'
+import LoadingListSkeleton from './loading-list-skeleton'
+import LoadingDashboardSkeleton from './loading-dashboard'
+import { ClientsListData } from '@/app/(crm)/dashboard/components/clients-list-data'
 
 export const metadata: Metadata = {
-  title: 'Dashboard Home',
+  title: 'CRM - Dashboard Home',
 }
 
 export default function DashboardPage() {
-  const clients = use(getClients())
-
-  console.log(clients)
-
   return (
     <div className="w-full space-y-6">
       <div className="w-full space-y-2">
@@ -37,12 +20,12 @@ export default function DashboardPage() {
           Visão geral dos seus clientes e processos
         </h2>
       </div>
-
-      <Suspense fallback={<Loading />}>
-        <DashboardIndicators clients={clients} />
+      <Suspense key="indicators" fallback={<LoadingDashboardSkeleton />}>
+        <DashboardIndicatorsData />
       </Suspense>
-
-      <ClientsList clients={clients} />
+      <Suspense key="clients-list" fallback={<LoadingListSkeleton />}>
+        <ClientsListData />
+      </Suspense>
     </div>
   )
 }
