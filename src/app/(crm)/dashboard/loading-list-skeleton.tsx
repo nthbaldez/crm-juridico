@@ -4,11 +4,6 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 export default function LoadingListSkeleton() {
   return (
     <div className="w-full space-y-4">
-      <div className="w-full space-y-2">
-        <Skeleton className="h-8 w-1/4" />
-        <Skeleton className="h-4 w-2/4" />
-      </div>
-
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <Skeleton className="h-6 w-32" />
