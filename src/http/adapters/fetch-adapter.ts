@@ -3,12 +3,12 @@ import { sleep } from '@/lib/utils'
 export type FetchAdapterOptions = {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
   headers?: Record<string, string>
-  body?: any
+  body?: unknown
   params?: Record<string, string | number>
   signal?: AbortSignal
 }
 
-export async function fetchAdapter<T = any>(
+export async function fetchAdapter<T = unknown>(
   url: string,
   options: FetchAdapterOptions = {},
 ): Promise<T> {

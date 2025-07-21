@@ -4,9 +4,7 @@ import { Input } from '@/components/ui/input'
 import { debounce } from '@/lib/utils'
 import { Search } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
-
-// export interface CustomersListFiltersProps {}
+import { useEffect, useMemo, useState } from 'react'
 
 export function CustomersListFilters() {
   const [inputSearch, setInputSearch] = useState('')
@@ -19,17 +17,15 @@ export function CustomersListFilters() {
     setInputSearch(searchParams.get('customerName') || '')
   }, [searchParams])
 
-  const debouncedSearch = useCallback(
-    debounce((value: string) => {
-      handleSearch(value)
-    }, 500),
-    [handleSearch],
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        const params = new URLSearchParams(searchParams)
+        params.set('customerName', value)
+        router.replace(`${pathname}?${params.toString()}`)
+      }, 500),
+    [pathname, router, searchParams],
   )
-  function handleSearch(term: string) {
-    const params = new URLSearchParams(searchParams)
-    params.set('customerName', term)
-    router.replace(`${pathname}?${params.toString()}`)
-  }
 
   return (
     <div className="relative flex-1 sm:w-80">

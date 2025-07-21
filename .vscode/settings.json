@@ -1,0 +1,11 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "prettier",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit",
+		"quickfix.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
+	},
+	"files.insertFinalNewline": true,
+
+}

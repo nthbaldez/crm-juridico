@@ -32,7 +32,7 @@ export function formatCurrency(value: number) {
   }).format(value)
 }
 
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: string[]) => void>(
   fn: T,
   delay: number,
 ) {
