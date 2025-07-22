@@ -19,19 +19,19 @@ O **CRM Jurídico** é uma aplicação desenvolvida para auxiliar advogados na g
 - **Acompanhamento de Processos:**  
   Veja o andamento dos processos de cada cliente, com informações detalhadas e atualizadas.
 
-## Principais Tecnologias Utilizadas até o momento
+## Principais Tecnologias Utilizadas
 
 - **Next.js** (React 19)
-- **TailwindCSS** para estilização
-- **Radix UI** para componentes de interface
-- **Zod** para validação de dados
 - **TypeScript** para tipagem estática
+- **TailwindCSS** para estilização
+- **Radix UI/Shadcn UI** para componentes de interface
+- **Zod** para validação de dados
 
 ## Instalação e Uso
 
 1. **Clone o repositório:**
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/nthbaldez/crm-juridico.git
    cd crm-juridico
    ```
 
@@ -41,7 +41,7 @@ O **CRM Jurídico** é uma aplicação desenvolvida para auxiliar advogados na g
    ```
 
 3. **Configure as variáveis de ambiente:**
-   - Crie um arquivo `.env.local` na raiz do projeto e defina a variável:
+   - Crie um arquivo `.env.local` baseado no .env.example na raiz do projeto e defina a variável:
      ```
      NEXT_PUBLIC_API_BASE_URL=<url-da-api>
      ```
