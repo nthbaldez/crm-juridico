@@ -2,8 +2,12 @@
 // import { fetchAdapter } from './adapters/fetch-adapter'
 
 import { sleep } from '@/lib/utils'
-import { GetCustomersResponse } from './entities/entities'
-import { Customer, GetCustomersParams } from '@/types'
+import {
+  Customer,
+  GetCustomerResponse,
+  GetCustomersParams,
+  GetCustomersResponse,
+} from '@/types'
 
 const customers = [
   {
@@ -275,5 +279,15 @@ export async function getCustomers(
       perPage,
       totalPages: Math.ceil(filtered.length / perPage),
     },
+  }
+}
+
+export async function getCustomer(
+  customerId: string,
+): Promise<GetCustomerResponse> {
+  const customer = customers.find((customer) => customer.id === customerId)
+
+  return {
+    customer,
   }
 }

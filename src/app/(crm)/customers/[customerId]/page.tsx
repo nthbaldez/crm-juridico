@@ -1,22 +1,25 @@
-'use client'
+import Heading from '@/components/heading'
+import SidebarCustomerData from './components/sidebar-customer-data'
+import { getCustomer } from '@/http/customers'
 
-import { useParams } from 'next/navigation'
+export default async function UsersProcessesPage({
+  params,
+}: {
+  params: Promise<{ customerId: string }>
+}) {
+  const { customerId } = await params
 
-export default function UsersProcesses() {
-  const params = useParams()
+  const { customer } = await getCustomer(customerId)
 
   return (
-    <div className="p-6">
-      <h1>Processos do cliente de id {params.clientId}</h1>
+    <div className="pt-6">
+      <div className="w-full space-y-2">
+        <Heading>{customer?.name}</Heading>
+        <h2 className="text-gray-600">Detalhes do cliente e processos</h2>
+      </div>
 
       <div>
-        {/* {processes.map((process) => (
-          <Card key={process.number}>
-            <CardHeader>
-              <p>{process.number}</p>
-            </CardHeader>
-          </Card>
-        ))} */}
+        <SidebarCustomerData params={params} />
       </div>
     </div>
   )
