@@ -25,11 +25,16 @@ export function getStatusColor(status: string) {
   }
 }
 
-export function formatCurrency(value: number) {
+export const formatCurrency = (value: string | number): string => {
+  const numericValue =
+    typeof value === 'string' ? parseFloat(value.replace(/\./g, '')) : value
+
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(value)
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(numericValue)
 }
 
 export function debounce<T extends (...args: string[]) => void>(

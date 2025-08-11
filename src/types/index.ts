@@ -1,23 +1,6 @@
+import { Customer, Process } from '@/http/entities/entities'
+
 // Arquivos para tipos globais
-export interface Process {
-  number: string
-  title: string
-  court: string
-  cost: string
-  last_update: string
-}
-
-export interface Customer {
-  id: string
-  name: string
-  status: string
-  email: string
-  phone: string
-  cpf: string
-  created_at: string
-  processes: Process[]
-}
-
 export interface GetCustomersParams {
   page?: string
   perPage?: string
@@ -38,7 +21,16 @@ export interface GetCustomersResponse {
     page: number
     perPage: number
     totalPages: number
+    activeCustomers: number
   }
+}
+
+export interface GetProcessesResponse {
+  processes: Process[]
+  processesInProgress: Process[]
+  totalCountProcesses: number
+  totalCountProcessesInProgress: number
+  totalCost: string
 }
 
 export interface GetCustomerResponse {

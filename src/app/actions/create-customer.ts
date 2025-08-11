@@ -1,8 +1,8 @@
 'use server'
 
-import { CreateNewCustomerResponse } from '@/http/entities/entities'
 import { sleep } from '@/lib/utils'
 import { customerSchema } from '@/lib/zod'
+import { CreateNewCustomerResponse } from '@/types'
 
 export async function createCustomer(
   formData: FormData,

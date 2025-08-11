@@ -3,11 +3,11 @@
 
 import { sleep } from '@/lib/utils'
 import {
-  Customer,
   GetCustomerResponse,
   GetCustomersParams,
   GetCustomersResponse,
 } from '@/types'
+import { Customer } from './entities/entities'
 
 const customers = [
   {
@@ -271,6 +271,8 @@ export async function getCustomers(
   const filtered = filterCustomers(customers, customerName)
   const paginated = paginate(filtered, page, perPage)
 
+  const activeCustomers = getActiveCustomers()
+
   return {
     customers: paginated,
     meta: {
@@ -278,6 +280,7 @@ export async function getCustomers(
       page,
       perPage,
       totalPages: Math.ceil(filtered.length / perPage),
+      activeCustomers: activeCustomers.totalCount,
     },
   }
 }
@@ -285,9 +288,26 @@ export async function getCustomers(
 export async function getCustomer(
   customerId: string,
 ): Promise<GetCustomerResponse> {
+  await sleep(2000)
   const customer = customers.find((customer) => customer.id === customerId)
 
   return {
     customer,
+  }
+}
+
+function getActiveCustomers() {
+  const activeCustomers = customers.filter(
+    (customer) => customer.status === 'Ativo',
+  )
+
+  const totalCount = activeCustomers.length
+  return { activeCustomers, totalCount }
+}
+
+export async function getTotalCustomers() {
+  await sleep(2000)
+  return {
+    totalCount: customers.length,
   }
 }
