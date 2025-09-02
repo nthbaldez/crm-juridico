@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { GetCustomersResponse } from '@/http/entities/entities'
 import { getStatusColor } from '@/lib/utils'
+import { GetCustomersResponse } from '@/types'
 import { Eye, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -58,7 +58,7 @@ export function CustomersList({ data, pageIndex = 1 }: CustomersListProps) {
                   {customer.email}
                 </div>
                 <div>
-                  <span className="font-semibold">Telefone: </span>(11)
+                  <span className="font-semibold">Telefone: </span>
                   {customer.phone}
                 </div>
                 <div>
@@ -80,9 +80,9 @@ export function CustomersList({ data, pageIndex = 1 }: CustomersListProps) {
                   variant="outline"
                   size="sm"
                   asChild
-                  onClick={() => router.push(`/customers/${1}`)}
+                  onClick={() => router.push(`/customers/${customer.id}`)}
                 >
-                  <Link href={`/customers/${1}`}>
+                  <Link href={`/customers/${customer.id}`}>
                     <Eye className="h-4 w-4 mr-1" />
                     Ver detalhes
                   </Link>

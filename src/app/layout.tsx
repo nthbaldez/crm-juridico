@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
 
-const inter = Inter({
+const groteske = SpaceGrotesk({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-groteske',
 })
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${groteske.variable} antialiased`}>
         <Toaster />
         <div className="min-h-screen">{children}</div>
       </body>

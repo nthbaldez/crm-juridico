@@ -1,6 +1,7 @@
 import Heading from '@/components/heading'
-import SidebarCustomerData from './components/sidebar-customer-data'
+import SidebarCustomerInfo from './components/sidebar-customer-info'
 import { getCustomer } from '@/http/customers'
+import ProcessesCustomerData from './components/processes-customer-data'
 
 export default async function UsersProcessesPage({
   params,
@@ -18,8 +19,10 @@ export default async function UsersProcessesPage({
         <h2 className="text-gray-600">Detalhes do cliente e processos</h2>
       </div>
 
-      <div>
-        <SidebarCustomerData params={params} />
+      <div className="w-full space-x-4 flex">
+        <SidebarCustomerInfo customer={customer} />
+
+        <ProcessesCustomerData customer={customer} />
       </div>
     </div>
   )

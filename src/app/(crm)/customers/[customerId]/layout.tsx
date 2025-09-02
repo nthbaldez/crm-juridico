@@ -10,7 +10,7 @@ export default function ClientLayout({
 }>) {
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 m-auto space-y-6">{children}</div>
+      <div className="grid grid-cols-1 m-auto space-y-6 pb-6">{children}</div>
     </div>
   )
 }

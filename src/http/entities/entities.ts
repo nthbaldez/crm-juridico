@@ -1,9 +1,11 @@
 export interface Process {
+  id: string
   number: string
   title: string
   court: string
   cost: string
   last_update: string
+  status: 'Em andamento' | 'Inativo' | 'Ativo' | 'Finalizado' | 'Suspenso'
 }
 
 export interface Customer {
