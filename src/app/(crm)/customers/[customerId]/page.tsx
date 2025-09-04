@@ -19,7 +19,7 @@ export default async function UsersProcessesPage({
         <h2 className="text-gray-600">Detalhes do cliente e processos</h2>
       </div>
 
-      <div className="w-full space-x-4 flex">
+      <div className="w-full space-x-4 flex flex-col md:flex-row">
         <SidebarCustomerInfo customer={customer} />
 
         <ProcessesCustomerData customer={customer} />

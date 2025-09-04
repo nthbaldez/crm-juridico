@@ -9,7 +9,7 @@ import {
 } from '@/types'
 import { Customer } from './entities/entities'
 
-const customers = [
+const customers: Customer[] = [
   {
     id: '1',
     name: 'Maria Silva Santos',

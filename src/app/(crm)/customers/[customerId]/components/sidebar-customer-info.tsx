@@ -28,8 +28,8 @@ export default function SidebarCustomerInfo({
     )
   }
   return (
-    <aside className="mt-8">
-      <Card className="p-6 grid gap-8 bg-white rounded-sm border border-gray-200 h-auto w-[500px]">
+    <aside className="mt-8 w-full md:w-[300px]">
+      <Card className="p-6 grid gap-8 bg-white rounded-sm border border-gray-200 h-auto">
         <CardTitle className="flex items-center gap-2">
           <User size={20} />
           <h2 className="text-xl font-semibold">Informações do cliente</h2>

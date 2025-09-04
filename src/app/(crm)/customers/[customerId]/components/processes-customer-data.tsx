@@ -32,7 +32,7 @@ export default function ProcessesCustomerData({
     )
   }
   return (
-    <div className="lg:col-span-2 mt-8">
+    <div className="lg:col-span-2 mt-8 flex-1">
       <Card className="bg-white shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-gray-900 flex items-center gap-2">
@@ -59,7 +59,7 @@ export default function ProcessesCustomerData({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
                     <div>
                       <p>
-                        <strong>Número:</strong> {process.number}
+                        <strong>Número:</strong> {process.id}
                       </p>
                       <p>
                         <strong>Tribunal:</strong> {process.court}
@@ -71,9 +71,10 @@ export default function ProcessesCustomerData({
                       </p>
                       <p>
                         <strong>Última atualização:</strong>{' '}
-                        {new Date(process.last_update).toLocaleDateString(
+                        {/* {new Date(process.last_update).toLocaleDateString(
                           'pt-BR',
-                        )}
+                        )} */}
+                        {process.last_update}
                       </p>
                     </div>
                   </div>
