@@ -1,10 +1,10 @@
 import Heading from '@/components/heading'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
-import { DashboardIndicatorsData } from './components/dashboard-indicators-data'
+import { DashboardIndicatorsModel } from './components/dashboard-indicators-model'
 import LoadingListSkeleton from './loading-list-skeleton'
 import LoadingDashboardSkeleton from './loading-dashboard'
-import { ClientsListData } from '@/app/(crm)/dashboard/components/clients-list-data'
+import { ClientsListModel } from '@/app/(crm)/dashboard/components/clients-list-model'
 
 export const metadata: Metadata = {
   title: 'CRM - Dashboard Home',
@@ -21,10 +21,10 @@ export default function DashboardPage() {
         </h2>
       </div>
       <Suspense key="indicators" fallback={<LoadingDashboardSkeleton />}>
-        <DashboardIndicatorsData />
+        <DashboardIndicatorsModel />
       </Suspense>
       <Suspense key="clients-list" fallback={<LoadingListSkeleton />}>
-        <ClientsListData />
+        <ClientsListModel />
       </Suspense>
     </div>
   )

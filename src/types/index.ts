@@ -7,6 +7,13 @@ export interface GetCustomersParams {
   customerName?: string
 }
 
+export interface PostCustomerPayload {
+  name: string
+  cpf: string
+  email: string
+  phone: string
+}
+
 export interface CreateNewCustomerResponse {
   name: string
   cpf: string

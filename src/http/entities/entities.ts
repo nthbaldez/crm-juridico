@@ -7,7 +7,12 @@ export interface Process {
   status: Status
 }
 
-type Status = 'Em andamento' | 'Inativo' | 'Ativo' | 'Finalizado' | 'Suspenso'
+export type Status =
+  | 'Em andamento'
+  | 'Inativo'
+  | 'Ativo'
+  | 'Finalizado'
+  | 'Suspenso'
 
 export interface Customer {
   id: string

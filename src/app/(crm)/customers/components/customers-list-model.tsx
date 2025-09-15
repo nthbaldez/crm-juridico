@@ -2,7 +2,7 @@ import { getCustomers } from '@/http/customers'
 import { CustomersList } from './customers-list'
 import z from 'zod'
 
-export async function CustomersListData({
+export async function CustomersListModel({
   searchParams,
 }: {
   searchParams: Promise<{ page: string; customerName: string }>

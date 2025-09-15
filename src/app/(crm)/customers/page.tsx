@@ -3,9 +3,9 @@ import { Suspense } from 'react'
 import { Metadata } from 'next'
 import CustomersListSkeleton from './components/customers-list-skeleton'
 import { CustomersListFilters } from './components/customers-list-filters'
-import { CreateNewCustomerForm } from '@/components/create-new-customer-form'
+import { CreateNewCustomerForm } from '@/app/(crm)/customers/components/create-new-customer-form'
 import { createCustomer } from '@/app/actions/create-customer'
-import { CustomersListData } from './components/customers-list-data'
+import { CustomersListModel } from './components/customers-list-model'
 
 export const metadata: Metadata = {
   title: 'CRM - Listagem de Clientes',
@@ -32,7 +32,7 @@ export default async function CustomersPage({
       </div>
       <div className="overflow-y-auto">
         <Suspense key="clients-list" fallback={<CustomersListSkeleton />}>
-          <CustomersListData searchParams={searchParams} />
+          <CustomersListModel searchParams={searchParams} />
         </Suspense>
       </div>
     </div>

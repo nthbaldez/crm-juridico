@@ -6,6 +6,7 @@ import {
   GetCustomerResponse,
   GetCustomersParams,
   GetCustomersResponse,
+  PostCustomerPayload,
 } from '@/types'
 import { Customer } from './entities/entities'
 
@@ -321,4 +322,21 @@ export async function getTotalCustomers() {
   return {
     totalCount: customers.length,
   }
+}
+
+export async function createCustomer(data: PostCustomerPayload) {
+  const today = new Date()
+
+  const formattedDate = new Intl.DateTimeFormat('pt-BR').format(today)
+
+  customers.push({
+    id: String(Math.random() * 1000),
+    name: data.name,
+    status: 'Ativo',
+    email: data.email,
+    phone: data.phone,
+    cpf: data.cpf,
+    created_at: formattedDate,
+    processes: [],
+  })
 }

@@ -1,8 +1,8 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GetCustomersResponse } from '@/http/entities/entities'
 import { getStatusColor } from '@/lib/utils'
+import { GetCustomersResponse } from '@/types'
 import { Eye, Users } from 'lucide-react'
 import Link from 'next/link'
 
