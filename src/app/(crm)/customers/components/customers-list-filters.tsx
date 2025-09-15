@@ -21,8 +21,14 @@ export function CustomersListFilters() {
     () =>
       debounce((value: string) => {
         const params = new URLSearchParams(searchParams)
-        params.set('customerName', value)
-        router.replace(`${pathname}?${params.toString()}`)
+
+        if (value === '') {
+          params.delete('customerName')
+          router.replace(pathname)
+        } else {
+          params.set('customerName', value)
+          router.replace(`${pathname}?${params.toString()}`)
+        }
       }, 500),
     [pathname, router, searchParams],
   )
