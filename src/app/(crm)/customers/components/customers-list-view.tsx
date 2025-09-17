@@ -21,7 +21,7 @@ export interface CustomersListProps {
   pageIndex: number
 }
 
-export function CustomersList({ data, pageIndex = 1 }: CustomersListProps) {
+export function CustomersListView({ data, pageIndex = 1 }: CustomersListProps) {
   const router = useRouter()
   const PAGE_SIZE = 6
   const searchParams = useSearchParams()

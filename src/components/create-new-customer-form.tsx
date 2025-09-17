@@ -1,17 +1,17 @@
 'use client'
 
 import { Plus } from 'lucide-react'
-import { Button } from '../../../../components/ui/button'
+import { Button } from './ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../../../../components/ui/dialog'
+} from './ui/dialog'
 import { useState } from 'react'
-import { Input } from '../../../../components/ui/input'
-import { Label } from '../../../../components/ui/label'
+import { Input } from './ui/input'
+import { Label } from './ui/label'
 import { toast } from 'sonner'
 import { CreateNewCustomerResponse } from '@/types'
 

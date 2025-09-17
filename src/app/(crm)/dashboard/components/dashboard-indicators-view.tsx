@@ -9,7 +9,7 @@ export interface DashboardIndicatorsProps {
   processes: GetProcessesResponse
 }
 
-export function DashboardIndicators({
+export function DashboardIndicatorsView({
   customersData,
   processes,
 }: DashboardIndicatorsProps) {

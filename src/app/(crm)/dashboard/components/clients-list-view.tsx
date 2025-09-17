@@ -12,7 +12,7 @@ export interface ClientsListProps {
   title?: string
 }
 
-export function ClientsList({
+export function ClientsListView({
   data,
   title = 'Clientes recentes',
 }: ClientsListProps) {

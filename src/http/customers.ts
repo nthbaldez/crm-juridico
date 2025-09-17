@@ -1,6 +1,3 @@
-// import { env } from '@/lib/env'
-// import { fetchAdapter } from './adapters/fetch-adapter'
-
 import { sleep } from '@/lib/utils'
 import {
   GetCustomerResponse,
